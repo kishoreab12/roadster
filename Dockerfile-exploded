@@ -1,0 +1,18 @@
+FROM eclipse-temurin:17-jdk
+
+WORKDIR /u01/applications
+
+# 1. Bring in your compiled executable JAR artifact
+COPY target/roadster-1.0.jar app.jar
+
+# 2. Use Spring Boot's native tool mode to extract the layers into a folder structure
+RUN java -Djarmode=tools -jar app.jar extract --destination exploded-app && echo "=== Extracted files ===" && find exploded-app -maxdepth 2 && rm app.jar
+
+# 3. Change directory to the newly extracted layout
+WORKDIR /u01/applications/exploded-app
+
+EXPOSE 8080
+
+# 4. Launch using Spring Boot's official JarLauncher binary (No explicit class naming required!)
+ENTRYPOINT ["java","-cp",".:app.jar:lib/*","com.roadster.RoadsterApplication"]
+
