@@ -1,10 +1,19 @@
 FROM ubuntu:26.04
-RUN mkdir -p /u01/applications
-RUN apt update -y
-RUN apt install -y openjdk-17-jdk 
+ENV JAVA_HOME=/u01/middleware/jdk-17.0.12
+ENV TOMCAT_HOME=/u01/middleware/apache-tomcat-9.0.119
+ENV PATH=${PATH}:${JAVA_HOME}/bin:${TOMCAT_HOME}/bin
 
-WORKDIR /u01/applications
-COPY target/roadster-1.0.jar .
-RUN chmod u+x roadster-1.0.jar
-EXPOSE 8080
-CMD ["java","-jar","roadster-1.0.jar"]
+RUN mkdir -p /u01/middleware/
+WORKDIR /u01/middleware
+ADD https://download.oracle.com/java/17/archive/jdk-17.0.12_linux-x64_bin.tar.gz .
+RUN tar -xzvf jdk-17.0.12_linux-x64_bin.tar.gz
+RUN rm -rf jdk-17.0.12_linux-x64_bin.tar.gz
+ADD https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.119/bin/apache-tomcat-9.0.119.tar.gz .
+RUN tar -xzvf apache-tomcat-9.0.119.tar.gz
+RUN rm -rf apache-tomcat-9.0.119.tar.gz
+
+COPY target/roadster-1.0.war apache-tomcat-9.0.119/webapps
+COPY run.sh .
+RUN chmod u+x run.sh
+ENTRYPOINT [ "./run.sh" ]
+CMD ["tail","-f","/dev/null"]
