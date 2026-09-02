@@ -5,6 +5,7 @@ ENV PATH=${PATH}:${JAVA_HOME}/bin:${TOMCAT_HOME}/bin
 
 RUN mkdir -p /u01/middleware/
 WORKDIR /u01/middleware
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 ADD https://download.oracle.com/java/17/archive/jdk-17.0.12_linux-x64_bin.tar.gz .
 ADD https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.121/bin/apache-tomcat-9.0.121.tar.gz .
 
