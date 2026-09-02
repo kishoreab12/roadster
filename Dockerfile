@@ -1,6 +1,6 @@
 FROM ubuntu:26.04
 ENV JAVA_HOME=/u01/middleware/jdk-17.0.12
-ENV TOMCAT_HOME=/u01/middleware/apache-tomcat-9.0.119
+ENV TOMCAT_HOME=/u01/middleware/apache-tomcat-9.0.121
 ENV PATH=${PATH}:${JAVA_HOME}/bin:${TOMCAT_HOME}/bin
 
 RUN mkdir -p /u01/middleware/
