@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: roadster_ConfigMap
+  name: roadster-configmap
   labels:
     env: development
 data:
