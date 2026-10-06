@@ -1,8 +1,8 @@
 FROM ubuntu:24.04
 ENV JAVA_HOME=/u01/middleware/jdk-17.0.12
 #ENV TOMCAT_HOME=/u01/middleware/apache-tomcat-11.0.25
-ENV PATH=${PATH}:${JAVA_HOME}/bin:${TOMCAT_HOME}/bin
-
+ENV PATH=${PATH}:${JAVA_HOME}/bin
+#:${TOMCAT_HOME}/bin
 RUN mkdir -p /u01/middleware/
 WORKDIR /u01/middleware
 ADD https://download.oracle.com/java/17/archive/jdk-17.0.12_linux-x64_bin.tar.gz .
