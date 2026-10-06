@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
     - name: roadster
-      image: jcrnode.com/docker/roadster:3.0
+      image: jcrnode.com/docker/roadster:2.0
       ports:
         - name: http
           containerPort: 8080
@@ -35,27 +35,27 @@ spec:
           cpu: "500m"
           memory: "512Mi"
       env:
-        - name: PREFERENCES_ORIGIN_COUNTRY
+        - name: preferences.originCountry
           valueFrom:
             configMapKeyRef:
               name: roadsterconfigmap
               key: origin-country
-        - name: PREFERENCES_CITY
+        - name: preferences.city
           valueFrom:
             configMapKeyRef:
               name: roadsterconfigmap
               key: city      
-        - name: PREFERENCES_AGE
+        - name: preferences.age
           valueFrom:
             configMapKeyRef:
               name: roadsterconfigmap
               key: age
-        - name: PREFERENCES_GENDER      
+        - name: preferences.gender      
           valueFrom:
             configMapKeyRef:
               name: roadsterconfigmap
               key: gender
-        - name: PREFERENCES_INTERNATIONAL_PLACES
+        - name: preferences.internationalPlaces
           valueFrom:
             configMapKeyRef:
               name: roadsterconfigmap
