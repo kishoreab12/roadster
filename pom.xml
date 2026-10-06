@@ -11,7 +11,7 @@
 	<groupId>roadster.com</groupId>
 	<artifactId>roadster</artifactId>
 	<version>1.0</version>
-	<packaging>war</packaging>
+	<!-- <packaging>war</packaging> -->
 	<name>roadster</name>
 	<description>exploring places</description>
 	<url />
